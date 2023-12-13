@@ -1,0 +1,94 @@
+{% block title %}ContactMe{% endblock %}
+
+{% block content %}
+  <div class="container mt-5 mb-5">
+    <a href="{% url 'ContactMe:contact_create' %}" class="btn btn-primary mb-3">Create New Contact</a>
+    <h2 class="mb-4">Contact List</h2>
+    {% if contacts %}
+      <table class="table table-bordered table-striped table-lg">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for contact in contacts %}
+            <tr class="table-row-big">
+              <td class="table-cell">{{ contact.name }}</td>
+              <td class="table-cell">{{ contact.contact_email }}</td>
+              <td class="table-cell">{{ contact.contact_number }}</td>
+              <td class="table-cell">
+                <a href="{% url 'ContactMe:contact_detail' contact.pk %}" class="btn btn-info btn-sm">View</a>
+                <a href="{% url 'ContactMe:contact_edit' contact.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'ContactMe:contact_confirm_delete' contact.pk %}" class="btn btn-danger btn-sm">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No contacts available.</p>
+    {% endif %}
+  </div>
+
+  <!-- Add some custom styles for colors, centering, and spacing -->
+  <style>
+    body {
+      background-color: #f8f9fa; /* Light gray background color */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      background-color: #ffffff; /* White background color */
+      padding: 20px;
+      border-radius: 10px; /* Rounded corners for the container */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+      flex: 1; /* Allow the container to grow and take remaining space */
+    }
+
+    .btn-primary {
+      margin-bottom: 20px; /* Adjust margin-bottom for the "Create New Contact" button */
+    }
+
+    .table-row-big {
+      margin-bottom: 30px; /* Adjust the margin to your preference */
+    }
+
+    .table-cell {
+      padding: 15px; /* Adjust the padding to your preference */
+    }
+
+    /* Style the table with some colors */
+    table {
+      background-color: #fff; /* White background for the table */
+    }
+
+    th, td {
+      background-color: #f2f2f2; /* Light gray background for table headers and cells */
+    }
+
+    .btn {
+      margin-right: 5px; /* Add a little margin between buttons */
+    }
+
+    /* Style for the footer */
+    footer {
+      margin-top: auto;
+      padding: 10px 0;
+      background-color: #343a40; /* Dark background color for the footer */
+      color: #ffffff; /* White text color */
+      text-align: center;
+    }
+  </style>
+
+  <!-- Footer with copyright notice -->
+  <footer>
+    <p>&copy; 2023 Created by Jaganath Selvan</p>
+  </footer>
+{% endblock %}

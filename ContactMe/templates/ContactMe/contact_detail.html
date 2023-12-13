@@ -1,0 +1,53 @@
+{% block content %}
+  <div class="container mt-5">
+    <div class="card shadow p-4">
+      <h2 class="card-title mb-4 text-center">Contact Details: {{ contact.name }}</h2>
+      <div class="contact-info text-center">
+        <div class="mb-3">
+          <strong>Email:</strong> {{ contact.contact_email }}
+        </div>
+        <div class="mb-3">
+          <strong>Phone:</strong> {{ contact.contact_number }}
+        </div>
+      </div>
+      <div class="action-buttons mt-4 text-center">
+        <a href="{% url 'ContactMe:contact_edit' contact.pk %}" class="btn btn-primary btn-lg mr-2">Edit</a>
+        <a href="{% url 'ContactMe:contact_list' %}" class="btn btn-secondary btn-lg">Back</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Bootstrap CSS from CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Style for the footer -->
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #f8f9fa; /* Light gray background color */
+    }
+
+    .card {
+      border-radius: 15px;
+      border: 1px solid #dee2e6;
+      margin: 20px auto;
+      max-width: 500px; /* Adjusted maximum width */
+      padding: 20px;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 10px 0;
+      background-color: #343a40; /* Dark background color for the footer */
+      color: #ffffff; /* White text color */
+      text-align: center;
+    }
+  </style>
+
+  <!-- Footer with copyright notice -->
+  <footer>
+    <p>&copy; 2023 Created by Jaganath Selvan</p>
+  </footer>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center">{{ form_title }}</h2>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label for="id_name" class="col-sm-2 col-form-label">
+                                <i class="fas fa-user"></i> Name:
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" id="id_name" name="name" class="form-control" placeholder="Enter your name">
+                                {% if form.name.errors %}
+                                    <div class="error">{{ form.name.errors.as_text }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="id_email" class="col-sm-2 col-form-label">
+                                <i class="fas fa-envelope"></i> Email:
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="email" id="id_email" name="email" class="form-control" placeholder="Enter your email">
+                                {% if form.email.errors %}
+                                    <div class="error">{{ form.email.errors.as_text }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="id_phone" class="col-sm-2 col-form-label">
+                                <i class="fas fa-phone"></i> Phone:
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="tel" id="id_phone" name="phone" class="form-control" placeholder="Enter your phone number">
+                                {% if form.phone.errors %}
+                                    <div class="error">{{ form.phone.errors.as_text }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="id_notes" class="col-sm-2 col-form-label">
+                                <i class="fas fa-pencil-alt"></i> Notes:
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea id="id_notes" name="notes" class="form-control" placeholder="Enter any notes"></textarea>
+                                {% if form.notes.errors %}
+                                    <div class="error"></div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="{% url 'ContactMe:contact_list' %}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

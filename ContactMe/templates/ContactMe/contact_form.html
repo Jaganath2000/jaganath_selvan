@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Other head content remains the same -->
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light gray background color */
+        }
+
+        .container {
+            background-color: #ffffff; /* White background color */
+            padding: 20px;
+            border-radius: 10px; /* Rounded corners for the container */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+            margin-top: 50px; /* Adjust the margin to center the container */
+        }
+
+        .contact-form {
+            text-align: center; /* Center-align the form content */
+        }
+
+        form {
+            margin-top: 20px; /* Add some space above the form */
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* Add space between form fields */
+        }
+
+        button {
+            margin-right: 10px; /* Add a little margin between buttons */
+        }
+
+        /* Style for the footer */
+        footer {
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #343a40; /* Dark background color for the footer */
+            color: #ffffff; /* White text color */
+            text-align: center;
+            border-radius: 10px; /* Rounded corners for the footer */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="contact-form">
+            <h2 class="mb-4">Create New Contact</h2>
+            <form action="{% url 'ContactMe:contact_create' %}" method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+
+                <!-- Display form errors here -->
+                {% for error in form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+                <div class="form-group">
+                    <label for="{{ form.name.id_for_label }}">Name</label>
+                    {{ form.name }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.contact_email.id_for_label }}"> Email</label>
+                    {{ form.contact_email }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.contact_number.id_for_label }}">Phone</label>
+                    {{ form.contact_number }}
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{% url 'ContactMe:contact_list' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer with copyright notice -->
+    <footer>
+        <p>&copy; 2023 Created by Jaganath Selvan</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% block content %}
+  <div class="container d-flex align-items-center justify-content-center mt-5">
+    <div class="card shadow">
+      <div class="card-body text-center">
+        <h2 class="card-title">Confirm Delete</h2>
+        <p class="card-text">Are you sure you want to delete?</p>
+
+        <!-- Display contact details -->
+        <div class="text-left mt-4">
+          <p><strong>Name:</strong> {{ contact.name }}</p>
+        </div>
+
+        <form method="post" action="{% url 'ContactMe:contact_confirm_delete' contact.pk %}" class="mt-4">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger mr-2">Delete</button>
+          <a href="{% url 'ContactMe:contact_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Style for the footer -->
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 10px 0;
+      background-color: #343a40; /* Dark background color for the footer */
+      color: #ffffff; /* White text color */
+      text-align: center;
+    }
+
+    .card {
+      border-radius: 15px;
+      border: 1px solid #dee2e6;
+      margin: 20px;
+    }
+  </style>
+
+  <!-- Footer with copyright notice -->
+  <footer>
+    <p>&copy; 2023 Created by Jaganath Selvan</p>
+  </footer>
+{% endblock %}
